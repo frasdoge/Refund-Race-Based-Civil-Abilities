@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" />
+    <version major="3" minor="6" revision="6" build="0" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="Module" value="0563bdbd-f77c-4d13-a60c-4b6b5a556151" type="23" />
+            <attribute id="Name" value="RemoveRaceBasedCivilAbilities" type="23" />
+            <attribute id="Type" value="Add-on" type="23" />
+            <attribute id="UUID" value="def7d899-3b4b-4b00-9ef8-491eb7476652" type="23" />
+        </node>
+    </region>
+</save>
