@@ -1,0 +1,81 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+DB_RRBC_RaceTalents("Lizard_Persuasion");
+DB_RRBC_RaceTalents("Elf_Lore");
+DB_RRBC_RaceTalents("Dwarf_Sneaking");
+DB_RRBC_RaceTalents("Human_Civil");
+
+KBSECTION
+
+// Events
+
+IF
+GameStarted(_Region, _)
+AND
+IsGameLevel(_Region, 1)
+AND
+DB_IsPlayer(_Char)
+THEN
+RRBC_Refund(_Char);
+
+IF
+CharacterJoinedParty(_Char)
+AND
+DB_IsPlayer(_Char)
+THEN
+RRBC_Refund(_Char);
+
+IF
+CharacterCreationFinished(_Char)
+AND
+DB_IsPlayer(_Char)
+THEN
+SetStoryEvent(_Char, "RRBC_Remove");
+
+// Has not refunded before
+
+PROC
+RRBC_Refund((CHARACTERGUID)_Char)
+AND
+NOT DB_RRBC_HasRefunded(_Char)
+AND
+DB_RRBC_RaceTalents(_Talent)
+AND
+CharacterHasTalent(_Char, _Talent, 1)
+THEN
+CharacterRemoveTalent(_Char, _Talent);
+CharacterAddTalentPoint(_Char, 1);
+DB_RRBC_HasRefunded(_Char);
+
+// Has refunded before
+
+PROC
+RRBC_Refund((CHARACTERGUID)_Char)
+AND
+DB_RRBC_HasRefunded(_Char)
+AND
+DB_RRBC_RaceTalents(_Talent)
+AND
+CharacterHasTalent(_Char, _Talent, 1)
+THEN
+CharacterRemoveTalent(_Char, _Talent);
+
+// Undead handling
+
+PROC
+RRBC_Refund((CHARACTERGUID)_Char)
+AND
+NOT DB_RRBC_HasRefunded(_Char)
+AND
+IsTagged(_Char, "Undead", 1)
+THEN
+CharacterAddTalentPoint(_Char, 1);
+DB_RRBC_HasRefunded(_Char);
+
+
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "__Start"
