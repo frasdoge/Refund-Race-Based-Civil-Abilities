@@ -32,7 +32,7 @@ CharacterCreationFinished(_Char)
 AND
 DB_IsPlayer(_Char)
 THEN
-SetStoryEvent(_Char, "RRBC_Remove");
+RRBC_Refund(_Char);
 
 // Has not refunded before
 
