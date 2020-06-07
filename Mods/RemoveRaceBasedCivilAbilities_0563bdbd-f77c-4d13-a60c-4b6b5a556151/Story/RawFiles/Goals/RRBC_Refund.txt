@@ -71,7 +71,7 @@ NOT DB_RRBC_HasRefunded(_Char)
 AND
 IsTagged(_Char, "Undead", 1)
 THEN
-CharacterAddTalentPoint(_Char, 1);
+CharacterAddCivilAbilityPoint(_Char, 1);
 DB_RRBC_HasRefunded(_Char);
 
 EXITSECTION
