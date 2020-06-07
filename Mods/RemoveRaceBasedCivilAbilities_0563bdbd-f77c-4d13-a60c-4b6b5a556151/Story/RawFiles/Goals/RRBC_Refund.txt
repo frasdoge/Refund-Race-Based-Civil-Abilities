@@ -46,7 +46,7 @@ AND
 CharacterHasTalent(_Char, _Talent, 1)
 THEN
 CharacterRemoveTalent(_Char, _Talent);
-CharacterAddTalentPoint(_Char, 1);
+CharacterAddCivilAbilityPoint(_Char, 1);
 DB_RRBC_HasRefunded(_Char);
 
 // Has refunded before
@@ -73,7 +73,6 @@ IsTagged(_Char, "Undead", 1)
 THEN
 CharacterAddTalentPoint(_Char, 1);
 DB_RRBC_HasRefunded(_Char);
-
 
 EXITSECTION
 
